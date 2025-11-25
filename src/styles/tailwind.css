@@ -60,12 +60,12 @@
   /* Her tilføjes theme variable // tokens */
 
   /*Farver */
-  --color-primary-400: #00e4f5;
-  --color-primary-500: #006269;
-  --color-primary-600: #006d75;
-  --color-secondary-400: #f5e400;
-  --color-secondary-500: #f5a600;
-  --color-secondary-600: #f57a00;
+  --color-black: #171717;
+  --color-dark-gray: #27272a;
+  --color-gray: #606060;
+  --color-light-gray: #e0e0e0;
+  --color-off-white: #f1f1f1;
+  --color-orange: #ff6200;
 
   /*Typografi */
   --font-sans: "General Sans", sans-serif;
