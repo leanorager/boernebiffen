@@ -7,59 +7,21 @@ import Heading from "../components/Heading.astro";
 import Text from "../components/Text.astro";
 import Button from "../components/Button.astro";
 import Card from "../components/UniverseCard.astro";
-import HeroCard from "../components/HeroDesktop.astro";
+import HeroCard from "../components/HeroCard.astro";
 ---
 
 <MainLayout title="Titel">
   <main class="">
     <!--Hero-->
-
     <HeroCard
       backgroundImage="/img/hero_img1.jpg"
       backgroundAlt="Lillefinger ligger i en græsslette"
       logo="/svg/lillefinger_logo.svg"
       logoAlt="Lillefinger logo"
       heading="Hulen"
-      body="Nogle gange er det godt at have en hule sammen med sin bedste ven, hvor man kan bo, helt uden nogen voksne."
-      buttonLabel="Se mere"
-      buttonVariant="primary"
-      buttonIcon="/svg/play.svg"
-    />
-
-    <HeroCard
-      backgroundImage="/img/hero_img2.jpg"
-      backgroundAlt="Ged på en mark"
-      logo="/svg/opmedhovedet_logo.svg"
-      logoAlt="Op med hovedet logo"
-      heading="Det store Bjerg"
-      body="To geder på vandring snubler ind i nye udfordringer og opdager, at selv den mindste kan være den største helt."
-      buttonLabel="Se mere"
-      buttonVariant="primary"
-      buttonIcon="/svg/play.svg"
-    />
-
-    <HeroCard
-      backgroundImage="/img/hero_img3.jpg"
-      backgroundAlt="Bennys badekar"
-      logo="/svg/bennysbadekar_logo.svg"
-      logoAlt="Op med hovedet logo"
-      heading="Det store Ocean"
-      body="To geder på vandring snubler ind i nye udfordringer og opdager, at selv den mindste kan være den største helt."
-      buttonLabel="Se mere"
-      buttonVariant="primary"
-      buttonIcon="/svg/play.svg"
-    />
-
-    <HeroCard
-      backgroundImage="/img/hero_img4.jpg"
-      backgroundAlt="Myre ser trist ud"
-      logo="/svg/lillefinger_logo.svg"
-      logoAlt="Lillefinger logo"
-      heading="Min bedste ven"
-      body="Myre er ked af det, fordi hans bedste ven skal flytte ud af landet."
-      buttonLabel="Se mere"
-      buttonVariant="primary"
-      buttonIcon="/svg/play.svg"
+      description="Nogle gange er det godt at have en hule sammen med sin bedste ven, hvor man kan bo, helt uden nogen voksne."
+      playLabel="Se mere"
+      playIcon="/svg/play.svg"
     />
     <!--Hero slut-->
 
@@ -104,5 +66,22 @@ import HeroCard from "../components/HeroDesktop.astro";
       <Card image="/img/cirkeline.jpg" alt="Cirkeline cover" />
     </section>
     <!-- slut UniverseCard -->
+
+    <!--Single Hero med metadata-->
+    <HeroCard
+      backgroundImage="/images/lillefinger_bg.jpg"
+      logo="/images/lillefinger_logo.png"
+      genre="Animation/Eventyr"
+      year="2012"
+      duration="45 min"
+      ageLabel="3–7 år"
+      showHdTag={true}
+      heading="Hulen"
+      description="Lillefinger vil gerne lege med Myren..."
+      playLabel="Afspil"
+      playIcon="/svg/play.svg"
+      favoriteLabel="Mine favoritter"
+      favoriteIcon="/svg/heart.svg"
+    />
   </main>
 </MainLayout>

@@ -1,0 +1,147 @@
+---
+import Button from "./Button.astro";
+
+interface Props {
+  backgroundImage: string;
+  backgroundAlt?: string;
+
+  logo: string;
+  logoAlt?: string;
+
+  // Valgfri metadata
+  genre?: string;
+  year?: string;
+  duration?: string; // fx "45 min"
+  ageLabel?: string; // fx "3–7 år"
+  showHdTag?: boolean; // default: true
+
+  heading: string;
+  description: string; // brødteksten
+
+  playLabel: string;
+  playIcon: string;
+
+  favoriteLabel?: string;
+  favoriteIcon?: string;
+
+  stylingclasses?: string;
+}
+
+const {
+  backgroundImage,
+  backgroundAlt = "",
+
+  logo,
+  logoAlt = "",
+
+  genre,
+  year,
+  duration,
+  ageLabel,
+  showHdTag = true,
+
+  heading,
+  description,
+
+  playLabel,
+  playIcon,
+
+  favoriteLabel,
+  favoriteIcon,
+
+  stylingclasses = "",
+} = Astro.props;
+
+// Responsiv wrapper:
+// - w-full på små skærme
+// - fast højde men forskellig pr. breakpoint
+// - max bredde 1385px på store skærme
+const wrapperClasses =
+  "relative overflow-hidden rounded-[5px] shadow-md bg-black " +
+  "w-full h-[420px] md:h-[480px] lg:h-[560px] lg:max-w-[1385px]";
+---
+
+<section class:list={[wrapperClasses, stylingclasses]}>
+  <!-- Baggrundsbillede -->
+  <img
+    src={backgroundImage}
+    alt={backgroundAlt}
+    class="absolute inset-0 h-full w-full object-cover"
+    loading="lazy"
+  />
+
+  <!-- Gradient FRA BUNDEN og opad -->
+  <div
+    class="absolute inset-0 bg-gradient-to-t
+           from-black via-black/60 to-transparent"
+  >
+  </div>
+
+  <!-- Indhold -->
+  <div class="relative z-10 flex h-full items-center">
+    <div class="px-6 py-8 md:pl-16 md:pr-10 md:py-10 max-w-xl">
+      <!-- Logo -->
+      <img
+        src={logo}
+        alt={logoAlt}
+        class="max-h-[105px] w-auto mb-[12px]"
+        loading="lazy"
+      />
+
+      <!-- Metadata — vises kun hvis der faktisk ER metadata -->
+      {
+        (genre || year || duration || ageLabel) && (
+          <div class="flex flex-wrap items-center gap-3 text-sm text-white/80 mb-[16px]">
+            {genre && <span>{genre}</span>}
+            {genre && year && <span class="text-white/40">•</span>}
+            {year && <span>{year}</span>}
+
+            {(genre || year) && duration && (
+              <span class="text-white/40">•</span>
+            )}
+            {duration && <span>{duration}</span>}
+
+            {ageLabel && (
+              <span class="ml-2 inline-flex items-center rounded border border-white/40 px-2 py-[2px] text-xs">
+                {ageLabel}
+              </span>
+            )}
+
+            {showHdTag && (
+              <span class="inline-flex items-center rounded border border-white/40 px-2 py-[2px] text-xs">
+                HD
+              </span>
+            )}
+          </div>
+        )
+      }
+
+      <!-- Overskrift -->
+      <h5 class="text-base md:text-lg font-semibold text-white mb-[5px]">
+        {heading}
+      </h5>
+
+      <!-- Brødtekst -->
+      <p
+        class="text-sm md:text-base text-white leading-relaxed mb-[40px] line-clamp-5 md:line-clamp-none"
+      >
+        {description}
+      </p>
+
+      <!-- Knapper -->
+      <div class="flex flex-wrap gap-4">
+        <Button variant="primary" icon={playIcon}>
+          {playLabel}
+        </Button>
+
+        {
+          favoriteLabel && favoriteIcon && (
+            <Button variant="secondary" icon={favoriteIcon}>
+              {favoriteLabel}
+            </Button>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
