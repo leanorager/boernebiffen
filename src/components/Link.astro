@@ -1,24 +1,42 @@
 ---
-// Henter parametrene fra Astro.props
-const { href="#", target="_self", variant= "textlink", size = "default" } = Astro.props; 
- 
-//Definer den styling (Tailwind classes, der gør sig gældende for alle links
-const linkStyling = ""; 
- 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskellige varianter 
-const variantClasses = {
-"textlink": "underline text-blue-500", /* text-primary-500 */
-"primary": "inline-block border-2 px-16 py-4 border-black", /* border-primary-500 */
-"secondary": "inline-block border-2 px-16 py-4 border-blue-500" /* border-secondary-500 */
-};
- 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskelligeog størrelser.
+const { href = "#", teksttype = "p", stylingclasses = "" } = Astro.props;
+
+// De samme classes som i Text.astro, så dine links følger samme skala
 const sizeClasses = {
-"default": "text-default", 
-"large": "text-4xl",
-"medium": "text-xl",
-"small": "text-large"
+  p: "text-[14px] lg:text-[16px] font-medium",
+  p_smaller: "text-[12px] lg:text-[14px] font-normal",
+  p_bigger: "text-[16px] lg:text-[18px] font-medium",
 };
 ---
-<!--Sæt classes for den pågældende knap sammen ved hjælp af Astros class:list -->
-<a href={href} target={target} class:list={[linkStyling, variantClasses[variant], sizeClasses[size]]}><slot /></a>
+
+<a
+  href={href}
+  class:list={[
+    "inline-block relative text-current",
+    sizeClasses[teksttype],
+    stylingclasses,
+  ]}
+>
+  <span class="link-underline"><slot /></span>
+</a>
+
+<style>
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.25s ease-out;
+  }
+
+  a:hover .link-underline::after {
+    width: 100%;
+  }
+</style>
