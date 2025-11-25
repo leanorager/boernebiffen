@@ -1,0 +1,66 @@
+---
+import Text from "./Text.astro";
+import Heading from "./Heading.astro";
+
+interface Props {
+  img: string;
+  title: string;
+  time: number | string;
+  rank: number | string;
+  href?: string;
+}
+
+const { img, title, time, rank, href = "/singleview" } = Astro.props;
+---
+
+<a href={href} class="block w-[302px] lg:w-[466px] group cursor-pointer">
+  <article>
+    <!-- Wrapper for billede + rank-tal -->
+    <div class="relative w-full h-auto">
+      <!-- Billedcontainer højrejusteret -->
+      <div
+        class="relative ml-auto w-[284px] lg:w-[440px]
+               rounded-[5px] overflow-hidden"
+      >
+        <!-- Selve billedet med zoom -->
+        <img
+          src={img}
+          alt={title}
+          class="w-full h-auto object-cover
+                 transition-transform duration-400 ease-out
+                 group-hover:scale-105"
+        />
+
+        <!-- Hover-overlay (sort 40%) -->
+        <div
+          class="absolute inset-0 bg-black/40 opacity-0
+                 group-hover:opacity-100
+                 transition-opacity duration-300"
+        >
+        </div>
+      </div>
+
+      <!-- Stort rank-tal (h1) til venstre, overlapper billedet -->
+      <div class="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+        <Heading htmlheading="h1" size="h1" stylingclasses="leading-none pl-1">
+          {rank}
+        </Heading>
+      </div>
+    </div>
+
+    <!-- Titel + tid -->
+    <div class="mt-1.5 flex items-center justify-between gap-4">
+      <Text teksttype="p">{title}</Text>
+
+      <div class="flex items-center gap-2">
+        <img
+          src="/svg/time.svg"
+          alt=""
+          aria-hidden="true"
+          class="w-[13.5px] h-[13.5px]"
+        />
+        <Text teksttype="p">{time} min</Text>
+      </div>
+    </div>
+  </article>
+</a>
