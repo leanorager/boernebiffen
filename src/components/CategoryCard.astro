@@ -6,16 +6,19 @@ interface Props {
   href?: string;
 }
 
-const { icon, label, href = "/category" } = Astro.props;
+const { icon, label, href = "/list" } = Astro.props;
 ---
 
 <a href={href} class="block">
   <article
-    class="flex h-[158px] w-[181px] lg:h-[188px] lg:w-[215px] flex-col items-center justify-between
-           rounded-[5px] bg-dark-gray
-           pt-[30px] pr-[20px] pb-[20px] pl-[20px]
-           text-center
-           transition-colors duration-200 hover:bg-gray"
+    class="flex h-[150px] w-full
+         sm:h-[158px]
+         lg:h-[188px] lg:max-w-[215px]
+         flex-col items-center justify-center gap-4 lg:gap-8
+         rounded-[5px] bg-dark-gray
+         pt-[30px] pr-[20px] pb-[20px] pl-[20px]
+         text-center
+         transition-colors duration-200 hover:bg-gray"
   >
     <img src={icon} alt={label} class="h-[80px] w-auto object-contain" />
 

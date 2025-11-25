@@ -1,9 +1,42 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Heading from "../components/Heading.astro";
-import Text from "../components/Text.astro";
 import Link from "../components/Link.astro";
-import Button from "../components/Button.astro";
+import CategoryCard from "../components/CategoryCard.astro";
 ---
 
-<MainLayout> <main></main> </MainLayout>
+<MainLayout>
+  <main class="px-4 py-8 lg:px-12">
+    <div class="flex items-center gap-2 mb-8">
+      <Link href="/#" teksttype="h4" stylingclasses="text-gray">Forside</Link>
+      <Heading htmlheading="h4" size="h4" stylingclasses="!text-gray">
+        >
+      </Heading>
+      <Link href="/category" teksttype="h4">Kategorier</Link>
+    </div>
+    <div class="max-w-[1400px] mx-auto">
+      <div
+        class="grid gap-4 justify-items-center
+         [grid-template-columns:repeat(auto-fit,minmax(150px,1fr))]
+         sm:[grid-template-columns:repeat(auto-fit,minmax(181px,1fr))]
+         lg:[grid-template-columns:repeat(auto-fit,minmax(215px,1fr))]"
+      >
+        <CategoryCard icon="/svg/cat_dyr1.svg" label="Dyr" />
+        <CategoryCard icon="/svg/cat_tegn2.svg" label="Tegn" />
+        <CategoryCard icon="/svg/cat_maskiner3.svg" label="Maskiner" />
+        <CategoryCard icon="/svg/cat_jul4.svg" label="Jul" />
+        <CategoryCard icon="/svg/cat_helte5.svg" label="Helte" />
+        <CategoryCard icon="/svg/cat_biler6.svg" label="Biler" />
+        <CategoryCard icon="/svg/cat_rytme7.svg" label="Rytme" />
+        <CategoryCard icon="/svg/cat_halloween8.svg" label="Halloween" />
+        <CategoryCard icon="/svg/cat_krea9.svg" label="Krea" />
+        <CategoryCard icon="/svg/cat_vejr10.svg" label="Vejret" />
+        <CategoryCard icon="/svg/cat_foelelser11.svg" label="Følelser" />
+        <CategoryCard icon="/svg/cat_mad12.svg" label="Mad" />
+        <CategoryCard icon="/svg/cat_magi13.svg" label="Magi" />
+        <CategoryCard icon="/svg/cat_prinsesser14.svg" label="Prinsesser" />
+        <CategoryCard icon="/svg/cat_sport15.svg" label="Sport" />
+      </div>
+    </div>
+  </main>
+</MainLayout>
