@@ -1,22 +1,37 @@
 ---
-// Henter parametrene fra Astro.props
-const { variant= "primary", size = "medium" } = Astro.props; 
- 
-//Definer den styling (Tailwind classes, der gør sig gældende for alle knapper)
-const buttonStyling = "border-2 px-16 py-4"; 
- 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskellige varianter 
+interface Props {
+  variant?: "primary" | "secondary"; // styrer farve
+  icon: string; // fx "/svg/play.svg"
+  type?: "button" | "submit" | "reset";
+  stylingclasses?: string; // ekstra tailwind hvis du får brug for det
+}
+
+const {
+  variant = "primary",
+  icon,
+  type = "button",
+  stylingclasses = "",
+} = Astro.props;
+
+// Fælles styling for ALLE knapper (fast størrelse, padding, radius)
+const baseClasses =
+  "inline-flex items-center justify-center gap-3 rounded-full px-8 py-3 " +
+  "text-[16px] font-medium transition-colors duration-200";
+
+// Varianter der kun ændrer farver
 const variantClasses = {
-"primary": "border-black hover:bg-black hover:text-white hover:-skew-x-12 transition-all duration-700", /* border-primary-500 */
-"secondary": "border-blue-500 hover:bg-blue-500 hover:border-blue-200" /* border-secondary-500 */
-};
- 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskelligeog størrelser.
-const sizeClasses = {
-"large": "text-4xl",
-"medium": "text-xl",
-"small": "text-large"
+  primary: "bg-orange text-off-white hover:bg-[#CD4F00]",
+  secondary: "bg-gray text-off-white hover:bg-dark-gray",
 };
 ---
-<!--Sæt classes for den pågældende knap sammen ved hjælp af Astros class:list -->
-<button class:list={[buttonStyling, variantClasses[variant], sizeClasses[size]]}><slot /></button>
+
+<button
+  type={type}
+  class:list={[baseClasses, variantClasses[variant], stylingclasses]}
+>
+  <!-- SVG til venstre -->
+  <img src={icon} alt="" aria-hidden="true" class="w-5 h-5 flex-shrink-0" />
+
+  <!-- Tekst til højre -->
+  <span><slot /></span>
+</button>
