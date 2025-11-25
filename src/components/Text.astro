@@ -2,6 +2,9 @@
 // Henter parametrene fra Astro.props
 const { teksttype = "p", stylingclasses = "" } = Astro.props;
 
+// Fælles styling for ALLE teksttyper
+const baseClasses = "text-off-white";
+
 //Definer den styling (Tailwind classes), der gør sig gældende for de forskellige størrelser.
 const sizeClasses = {
   p: "text-[14px] lg:text-[16px] font-medium",
@@ -10,4 +13,6 @@ const sizeClasses = {
 };
 ---
 
-<p class:list={[sizeClasses[teksttype], stylingclasses]}><slot /></p>
+<p class:list={[baseClasses, sizeClasses[teksttype], stylingclasses]}>
+  <slot />
+</p>

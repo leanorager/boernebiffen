@@ -7,6 +7,7 @@ import Button from "../components/Button.astro";
 import { Image } from "astro:assets";
 import thumbsup from "../assets/images/thumbsup.png";
 import CategoryCard from "../components/CategoryCard.astro";
+import FilmCard from "../components/FilmCard.astro";
 ---
 
 <MainLayout title="Titel">
@@ -114,6 +115,28 @@ import CategoryCard from "../components/CategoryCard.astro";
       <CategoryCard icon="/svg/cat_magi13.svg" label="Magi" />
       <CategoryCard icon="/svg/cat_prinsesser14.svg" label="Prinsesser" />
       <CategoryCard icon="/svg/cat_sport15.svg" label="Sport" />
+      <div class="flex flex-col gap-6">
+        <FilmCard
+          img="/img/might_like_img1.jpg"
+          title="Lillefinger - Min bedste ven"
+          time={5}
+        />
+        <FilmCard
+          img="/img/might_like_img2.jpg"
+          title="Lillefinger - Marmeladetyven"
+          time={5}
+        />
+        <FilmCard
+          img="/img/might_like_img3.jpg"
+          title="Lillefinger - Hulen"
+          time={5}
+        />
+        <FilmCard
+          img="/img/might_like_img4.jpg"
+          title="Rita og krokodille: Skovturen"
+          time={5}
+        />
+      </div>
     </section>
   </main>
 </MainLayout>
