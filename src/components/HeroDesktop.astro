@@ -1,0 +1,78 @@
+---
+import Button from "./Button.astro";
+
+interface Props {
+  backgroundImage: string; // fx "/images/lillefinger_bg.jpg"
+  backgroundAlt?: string; // alt-tekst til baggrund
+  logo: string; // fx "/images/lillefinger_logo.png"
+  logoAlt?: string; // alt-tekst til logo
+  heading: string; // h5-tekst (fx "Hulen")
+  body: string; // kort brødtekst
+  buttonLabel: string; // tekst på knappen (fx "Se mere")
+  buttonVariant?: "primary" | "secondary";
+  buttonIcon: string; // fx "/svg/play.svg"
+  stylingclasses?: string; // ekstra tailwind hvis I får brug for det
+}
+
+const {
+  backgroundImage,
+  backgroundAlt = "",
+  logo,
+  logoAlt = "",
+  heading,
+  body,
+  buttonLabel,
+  buttonVariant = "primary",
+  buttonIcon,
+  stylingclasses = "",
+} = Astro.props;
+
+const wrapperClasses =
+  "relative overflow-hidden rounded-[5px] shadow-md bg-black " +
+  "w-[1385px] h-[560px]";
+---
+
+<section class:list={[wrapperClasses, stylingclasses]}>
+  <!-- Baggrundsbillede -->
+  <img
+    src={backgroundImage}
+    alt={backgroundAlt}
+    class="absolute inset-0 h-full w-full object-cover"
+    loading="lazy"
+  />
+
+  <!-- Sort → transparent gradient fra venstre til lidt over midten -->
+  <div
+    class="absolute inset-0 bg-gradient-to-r
+           from-black/90 via-black/60 to-transparent"
+  >
+  </div>
+
+  <!-- Indhold ovenpå gradienten -->
+  <div class="relative z-10 flex h-full items-center">
+    <div class="pl-20 py-10 max-w-md">
+      <!-- Logo -->
+      <img
+        src={logo}
+        alt={logoAlt}
+        class="max-h-[105px] w-auto mb-[5px]"
+        loading="lazy"
+      />
+
+      <!-- h5 -->
+      <h5 class="text-base font-semibold text-white mb-[5px]">
+        {heading}
+      </h5>
+
+      <!-- Brødtekst -->
+      <p class="text-sm text-white leading-relaxed mb-[40px]">
+        {body}
+      </p>
+
+      <!-- Knap -->
+      <Button variant={buttonVariant} icon={buttonIcon}>
+        {buttonLabel}
+      </Button>
+    </div>
+  </div>
+</section>
