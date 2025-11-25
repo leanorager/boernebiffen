@@ -1,0 +1,77 @@
+---
+import Text from "./Text.astro";
+
+interface Props {
+  img: string;
+  title: string;
+  time: number | string;
+  href?: string;
+}
+
+const { img, title, time, href = "/singleview" } = Astro.props;
+---
+
+<a href={href} class="block w-[372px] lg:w-[440px] group cursor-pointer">
+  <article>
+    <!-- Wrapper så vi kan lave overlay + arrow -->
+    <div class="relative w-full h-auto rounded-[5px] overflow-hidden">
+      <!-- Selve billedet -->
+      <img
+        src={img}
+        alt={title}
+        class="w-full h-auto object-cover rounded-[5px]
+               transition-transform duration-400 ease-out
+               group-hover:scale-105"
+      />
+
+      <!-- Hover-overlay -->
+      <div
+        class="absolute inset-0 bg-black/40 opacity-0
+               group-hover:opacity-100
+               transition-opacity duration-300"
+      >
+      </div>
+
+      <!-- Arrow i midten: skift icon ved hover -->
+      <div
+        class="absolute inset-0 flex items-center justify-center pointer-events-none"
+      >
+        <!-- Normal arrow -->
+        <img
+          src="/svg/arrow.svg"
+          alt=""
+          aria-hidden="true"
+          class="w-[50px] h-[50px] block group-hover:hidden"
+        />
+
+        <!-- Hover arrow -->
+        <img
+          src="/svg/arrow_hover.svg"
+          alt=""
+          aria-hidden="true"
+          class="w-[50px] h-[50px] hidden group-hover:block"
+        />
+      </div>
+    </div>
+
+    <!-- Titel + tid -->
+    <div class="mt-1.5 flex items-center justify-between gap-4">
+      <Text teksttype="p">{title}</Text>
+
+      <div class="flex items-center gap-2">
+        <img
+          src="/svg/time.svg"
+          alt=""
+          aria-hidden="true"
+          class="w-[13.5px] h-[13.5px]"
+        />
+        <Text teksttype="p">{time} min</Text>
+      </div>
+    </div>
+
+    <!-- Progress/time bar -->
+    <div class="mt-1">
+      <img src="/svg/time_bar.svg" alt="Tidslinje" class="w-full h-auto" />
+    </div>
+  </article>
+</a>
