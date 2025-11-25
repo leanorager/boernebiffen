@@ -1,0 +1,24 @@
+---
+import Heading from "../components/Heading.astro";
+interface Props {
+  icon: string; // fx "/svg/cat_dyr1.svg"
+  label: string; // fx "Dyr"
+  href?: string;
+}
+
+const { icon, label, href = "/category" } = Astro.props;
+---
+
+<a href={href} class="block">
+  <article
+    class="flex h-[188px] w-[215px] flex-col items-center justify-between
+           rounded-[5px] bg-dark-gray
+           pt-[30px] pr-[20px] pb-[20px] pl-[20px]
+           text-center
+           transition-colors duration-200 hover:bg-gray"
+  >
+    <img src={icon} alt={label} class="h-[80px] w-auto object-contain" />
+
+    <Heading htmlheading="h5" size="h5">{label}</Heading>
+  </article>
+</a>
