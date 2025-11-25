@@ -1,10 +1,93 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Heading from "../components/Heading.astro";
-import Text from "../components/Text.astro";
 import Link from "../components/Link.astro";
+import FilmCard from "../components/FilmCard.astro";
 ---
 
 <MainLayout>
-  <main></main>
+  <main class="px-4 py-8 lg:px-12">
+    <div class="flex items-center gap-2 mb-8">
+      <Link href="/#" teksttype="h4" stylingclasses="text-gray">Forside</Link>
+      <Heading htmlheading="h4" size="h4" stylingclasses="!text-gray">
+        >
+      </Heading>
+      <Link href="/category" teksttype="h4" stylingclasses="text-gray"
+        >Kategorier</Link
+      >
+      <Heading htmlheading="h4" size="h4" stylingclasses="!text-gray">
+        >
+      </Heading>
+      <Link href="/list" teksttype="h4">Maskiner</Link>
+    </div>
+    <div
+      class="max-w-[1400px] mx-auto grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-items-center"
+    >
+      <FilmCard
+        img="/img/kran_1.jpg"
+        title="Mægtige maskiner - Tårnkran"
+        time={6}
+      />
+      <FilmCard
+        img="/img/borerig_2.jpg"
+        title="Mægtige maskiner - Borerig"
+        time={6}
+      />
+      <FilmCard
+        img="/img/asfaltmaskine_3.jpg"
+        title="Mægtige maskiner - Asfaltmaskine"
+        time={6}
+      />
+      <FilmCard
+        img="/img/kaedegraver_4.jpg"
+        title="Mægtige maskiner - Kædegraver"
+        time={6}
+      />
+      <FilmCard
+        img="/img/stribemaler_5.jpg"
+        title="Mægtige maskiner - Stribemaler"
+        time={6}
+      />
+      <FilmCard
+        img="/img/betonkanon_6.jpg"
+        title="Mægtige maskiner - Betonkanon"
+        time={6}
+      />
+      <FilmCard
+        img="/img/sortering_7.jpg"
+        title="Mægtige maskiner - Sorteringsmaskine"
+        time={6}
+      />
+      <FilmCard
+        img="/img/fraeser_8.jpg"
+        title="Mægtige maskiner - Fræser"
+        time={6}
+      />
+      <FilmCard
+        img="/img/piloteringsmaskine_9.jpg"
+        title="Mægtige maskiner - Piloteringsmaskine"
+        time={6}
+      />
+      <FilmCard
+        img="/img/wiremaskine_10.jpg"
+        title="Mægtige maskiner - Wiremaskine"
+        time={6}
+      />
+      <FilmCard
+        img="/img/gravemaskine_11.jpg"
+        title="Mægtige maskiner - Gravemaskine"
+        time={6}
+      />
+      <FilmCard
+        img="/img/giraflift_12.jpg"
+        title="Mægtige maskiner - Giraflift"
+        time={6}
+      />
+      <FilmCard
+        img="/img/lastbil_13.jpg"
+        title="Mægtige maskiner - Lastbil"
+        time={6}
+      />
+    </div>
+  </main>
 </MainLayout>
