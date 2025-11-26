@@ -10,6 +10,7 @@ import CategoryCard from "../components/CategoryCard.astro";
 import FilmCard from "../components/FilmCard.astro";
 import TopTenCard from "../components/TopTenCard.astro";
 import FilmCardTimeline from "../components/FilmCardTimeline.astro";
+import HeroCard from "../components/HeroCard.astro";
 ---
 
 <MainLayout title="Titel">
@@ -103,28 +104,11 @@ import FilmCardTimeline from "../components/FilmCardTimeline.astro";
     <section>
       <Heading htmlheading="h4" size="h4">Card components</Heading>
       <CategoryCard icon="/svg/cat_dyr1.svg" label="Dyr" />
-      <div class="flex flex-col gap-6">
-        <FilmCard
-          img="/img/might_like_img1.jpg"
-          title="Lillefinger - Min bedste ven"
-          time={5}
-        />
-        <FilmCard
-          img="/img/might_like_img2.jpg"
-          title="Lillefinger - Marmeladetyven"
-          time={5}
-        />
-        <FilmCard
-          img="/img/might_like_img3.jpg"
-          title="Lillefinger - Hulen"
-          time={5}
-        />
-        <FilmCard
-          img="/img/might_like_img4.jpg"
-          title="Rita og krokodille: Skovturen"
-          time={5}
-        />
-      </div>
+      <FilmCard
+        img="/img/might_like_img1.jpg"
+        title="Lillefinger - Min bedste ven"
+        time={5}
+      />
       <TopTenCard
         img="/img/top10_1.jpg"
         title="Lillefinger - Marmeladetyven"
@@ -135,6 +119,31 @@ import FilmCardTimeline from "../components/FilmCardTimeline.astro";
         img="/img/lillefinger_marmeladetyven.jpg"
         title="Lillefinger - Marmeladetyven"
         time={5}
+      />
+      <HeroCard
+        backgroundImage="/img/lillefinger_hulen.png"
+        logo="/svg/lillefinger_logo.svg"
+        genre="Animation/Eventyr"
+        year="2012"
+        duration="45 min"
+        ageLabel="3–7 år"
+        showHdTag={true}
+        heading="Hulen"
+        description="Lillefinger vil gerne lege med Myren, men Myren har travlt med at passe sine homies i det lille hus. Da Lillefingers marmelade pludselig forsvinder, går han på jagt efter den hemmelige tyv. En sød og rolig historie om venskab, nysgerrighed og at forstå hinanden."
+        playLabel="Afspil"
+        playIcon="/svg/play.svg"
+        favoriteLabel="Mine favoritter"
+        favoriteIcon="/svg/heart.svg"
+      />
+      <HeroCard
+        backgroundImage="/img/hero_img1.jpg"
+        backgroundAlt="Lillefinger ligger i en græsslette"
+        logo="/svg/lillefinger_logo.svg"
+        logoAlt="Lillefinger logo"
+        heading="Hulen"
+        description="Nogle gange er det godt at have en hule sammen med sin bedste ven, hvor man kan bo, helt uden nogen voksne."
+        playLabel="Se mere"
+        playIcon="/svg/play.svg"
       />
     </section>
   </main>

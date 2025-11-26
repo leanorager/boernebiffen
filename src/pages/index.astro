@@ -8,115 +8,316 @@ import Text from "../components/Text.astro";
 import Button from "../components/Button.astro";
 import Card from "../components/UniverseCard.astro";
 import HeroCard from "../components/HeroCard.astro";
+import FilmCardTimeline from "../components/FilmCardTimeline.astro";
+import TopTenCard from "../components/TopTenCard.astro";
+import FilmCard from "../components/FilmCard.astro";
+import CategoryCard from "../components/CategoryCard.astro";
 ---
 
 <MainLayout title="Titel">
   <main class="">
-    <!--Hero cards start-->
-    <HeroCard
-      backgroundImage="/img/hero_img1.jpg"
-      backgroundAlt="Lillefinger ligger i en græsslette"
-      logo="/svg/lillefinger_logo.svg"
-      logoAlt="Lillefinger logo"
-      heading="Hulen"
-      description="Nogle gange er det godt at have en hule sammen med sin bedste ven, hvor man kan bo, helt uden nogen voksne."
-      playLabel="Se mere"
-      playIcon="/svg/play.svg"
-    />
+    <section>
+      <!--Hero cards start-->
+      <HeroCard
+        backgroundImage="/img/hero_img1.jpg"
+        backgroundAlt="Lillefinger ligger i en græsslette"
+        logo="/svg/lillefinger_logo.svg"
+        logoAlt="Lillefinger logo"
+        heading="Hulen"
+        description="Nogle gange er det godt at have en hule sammen med sin bedste ven, hvor man kan bo, helt uden nogen voksne."
+        playLabel="Se mere"
+        playIcon="/svg/play.svg"
+      />
 
-    <HeroCard
-      backgroundImage="/img/hero_img2.jpg"
-      backgroundAlt="Ged på en mark"
-      logo="/svg/opmedhovedet_logo.svg"
-      logoAlt="Op med hovedet logo"
-      heading="Det store Bjerg"
-      description="To geder på vandring snubler ind i nye udfordringer og opdager, at selv den mindste kan være den største helt."
-      playLabel="Se mere"
-      playIcon="/svg/play.svg"
-    />
+      <HeroCard
+        backgroundImage="/img/hero_img2.jpg"
+        backgroundAlt="Ged på en mark"
+        logo="/svg/opmedhovedet_logo.svg"
+        logoAlt="Op med hovedet logo"
+        heading="Det store Bjerg"
+        description="To geder på vandring snubler ind i nye udfordringer og opdager, at selv den mindste kan være den største helt."
+        playLabel="Se mere"
+        playIcon="/svg/play.svg"
+      />
 
-    <HeroCard
-      backgroundImage="/img/hero_img3.jpg"
-      backgroundAlt="Bennys badekar"
-      logo="/svg/bennysbadekar_logo.svg"
-      logoAlt="Bennys badekar logo"
-      heading="Det store Ocean"
-      description="To geder på vandring snubler ind i nye udfordringer og opdager, at selv den mindste kan være den største helt."
-      playLabel="Se mere"
-      playIcon="/svg/play.svg"
-    />
+      <HeroCard
+        backgroundImage="/img/hero_img3.jpg"
+        backgroundAlt="Bennys badekar"
+        logo="/svg/bennysbadekar_logo.svg"
+        logoAlt="Bennys badekar logo"
+        heading="Det store Ocean"
+        description="To geder på vandring snubler ind i nye udfordringer og opdager, at selv den mindste kan være den største helt."
+        playLabel="Se mere"
+        playIcon="/svg/play.svg"
+      />
 
-    <HeroCard
-      backgroundImage="/img/hero_img4.jpg"
-      backgroundAlt="Myre ser trist ud"
-      logo="/svg/lillefinger_logo.svg"
-      logoAlt="Lillefinger logo"
-      heading="Min bedste ven"
-      description="Myre er ked af det, fordi hans bedste ven skal flytte ud."
-      playLabel="Se mere"
-      playIcon="/svg/play.svg"
-    />
+      <HeroCard
+        backgroundImage="/img/hero_img4.jpg"
+        backgroundAlt="Myre ser trist ud"
+        logo="/svg/lillefinger_logo.svg"
+        logoAlt="Lillefinger logo"
+        heading="Min bedste ven"
+        description="Myre er ked af det, fordi hans bedste ven skal flytte ud."
+        playLabel="Se mere"
+        playIcon="/svg/play.svg"
+      />
 
-    <!--Hero slut-->
-
-    <!-- UniverseCard start-->
-    <section class="w-[275px]">
-      <Card image="/img/vitello.jpg" alt="Vitello cover" />
+      <!--Hero slut-->
+    </section>
+    <section>
+      <!--Se videre start-->
+      <Heading htmlheading="h4" size="h4">Se videre</Heading>
+      <div>
+        <FilmCardTimeline
+          img="/img/lillefinger_marmeladetyven.jpg"
+          title="Lillefinger - Marmeladetyven"
+          time={5}
+        />
+        <FilmCardTimeline
+          img="/img/vilde_kanin.jpg"
+          title="Ville og Vilde Kanin"
+          time={29}
+        />
+        <FilmCardTimeline
+          img="/img/cirkeline_zigeunerne.jpg"
+          title="Cirkeline - Zigeunerne"
+          time={11}
+        />
+        <FilmCardTimeline
+          img="/img/bennys_badekar.jpg"
+          title="Bennys badekar"
+          time={41}
+        />
+        <FilmCardTimeline
+          img="/img/de_smaa_vilde.jpg"
+          title="De små vilde: efterår"
+          time={13}
+        />
+        <FilmCardTimeline img="/img/ztriwer.jpg" title="Ztriwer" time={11} />
+        <FilmCardTimeline
+          img="/img/snuden_rejser_hjemmefra.jpg"
+          title="Snuden rejser hjemmefra"
+          time={17}
+        />
+      </div>
+      <!--Se videre slut-->
     </section>
 
-    <section class="w-[275px]">
-      <Card image="/img/pipungerne.jpg" alt="Pipungerne cover" />
-    </section>
+    <section>
+      <!-- UniverseCard start-->
+      <div>
+        <Heading htmlheading="h4" size="h4">Populære universer</Heading>
+        <Text teksttype="p_smaller">12 universer</Text>
+      </div>
+      <div>
+        <section class="w-[275px]">
+          <Card image="/img/vitello.jpg" alt="Vitello cover" />
+        </section>
 
-    <section class="w-[275px]">
-      <Card image="/img/snutte.jpg" alt="Snutte cover" />
-    </section>
+        <section class="w-[275px]">
+          <Card image="/img/pipungerne.jpg" alt="Pipungerne cover" />
+        </section>
 
-    <section class="w-[275px]">
-      <Card image="/img/lillefinger.jpg" alt="Lillefinger cover" />
-    </section>
+        <section class="w-[275px]">
+          <Card image="/img/snutte.jpg" alt="Snutte cover" />
+        </section>
 
-    <section class="w-[275px]">
-      <Card image="/img/cirkeline.jpg" alt="Cirkeline cover" />
-    </section>
+        <section class="w-[275px]">
+          <Card image="/img/lillefinger.jpg" alt="Lillefinger cover" />
+        </section>
 
-    <section class="w-[275px]">
-      <Card image="/img/vitello.jpg" alt="Vitello cover" />
-    </section>
+        <section class="w-[275px]">
+          <Card image="/img/cirkeline.jpg" alt="Cirkeline cover" />
+        </section>
 
-    <section class="w-[275px]">
-      <Card image="/img/pipungerne.jpg" alt="Pipungerne cover" />
-    </section>
+        <section class="w-[275px]">
+          <Card image="/img/vitello.jpg" alt="Vitello cover" />
+        </section>
 
-    <section class="w-[275px]">
-      <Card image="/img/snutte.jpg" alt="Snutte cover" />
-    </section>
+        <section class="w-[275px]">
+          <Card image="/img/pipungerne.jpg" alt="Pipungerne cover" />
+        </section>
 
-    <section class="w-[275px]">
-      <Card image="/img/lillefinger.jpg" alt="Lillefinger cover" />
-    </section>
+        <section class="w-[275px]">
+          <Card image="/img/snutte.jpg" alt="Snutte cover" />
+        </section>
 
-    <section class="w-[275px]">
-      <Card image="/img/cirkeline.jpg" alt="Cirkeline cover" />
-    </section>
-    <!-- UniverseCard slut-->
+        <section class="w-[275px]">
+          <Card image="/img/lillefinger.jpg" alt="Lillefinger cover" />
+        </section>
 
-    <!--Single Hero med metadata start-->
-    <HeroCard
-      backgroundImage="/img/lillefinger_hulen.png"
-      logo="/svg/lillefinger_logo.svg"
-      genre="Animation/Eventyr"
-      year="2012"
-      duration="45 min"
-      ageLabel="3–7 år"
-      showHdTag={true}
-      heading="Hulen"
-      description="Lillefinger vil gerne lege med Myren, men Myren har travlt med at passe sine homies i det lille hus. Da Lillefingers marmelade pludselig forsvinder, går han på jagt efter den hemmelige tyv. En sød og rolig historie om venskab, nysgerrighed og at forstå hinanden."
-      playLabel="Afspil"
-      playIcon="/svg/play.svg"
-      favoriteLabel="Mine favoritter"
-      favoriteIcon="/svg/heart.svg"
-    />
-    <!--Single Hero med metadata slut-->
+        <section class="w-[275px]">
+          <Card image="/img/cirkeline.jpg" alt="Cirkeline cover" />
+        </section>
+      </div>
+      <!-- UniverseCard slut-->
+    </section>
+    <section>
+      <!-- Top 10 start-->
+      <div>
+        <Heading htmlheading="h4" size="h4">Mest populære</Heading>
+        <Text teksttype="p_smaller">Top 10 mest sete</Text>
+      </div>
+      <div>
+        <TopTenCard
+          img="/img/top10_1.jpg"
+          title="Lillefinger - Marmeladetyven"
+          time={5}
+          rank={1}
+        />
+        <TopTenCard
+          img="/img/top10_2.jpg"
+          title="Snuden rejser hjemmefra"
+          time={17}
+          rank={2}
+        />
+        <TopTenCard
+          img="/img/top10_3.jpg"
+          title="Flagermusen"
+          time={45}
+          rank={3}
+        />
+        <TopTenCard
+          img="/img/top10_4.jpg"
+          title="Den sidste efterårsdag"
+          time={7}
+          rank={4}
+        />
+        <TopTenCard
+          img="/img/top10_5.jpg"
+          title="Lille frø"
+          time={8}
+          rank={5}
+        />
+        <TopTenCard
+          img="/img/top10_6.jpg"
+          title="Løven og musen"
+          time={2}
+          rank={6}
+        />
+        <TopTenCard
+          img="/img/top10_7.jpg"
+          title="Lillefinger - Undskyld"
+          time={5}
+          rank={7}
+        />
+        <TopTenCard
+          img="/img/top10_8.jpg"
+          title="Festlige fugle - Magi"
+          time={3}
+          rank={8}
+        />
+        <TopTenCard
+          img="/img/top10_9.jpg"
+          title="Min mosters historier - Flaskeposten"
+          time={10}
+          rank={9}
+        />
+        <TopTenCard
+          img="/img/top10_10.jpg"
+          title="Honningkagen løber hjemmefra"
+          time={7}
+          rank={10}
+        />
+      </div>
+      <!-- Top 10 slut-->
+    </section>
+    <section>
+      <!-- Vi tror... start-->
+      <Heading htmlheading="h4" size="h4">Vi tror, du kan lide disse...</Heading
+      >
+      <div>
+        <FilmCard
+          img="/img/might_like_img1.jpg"
+          title="Lillefinger - Min bedste ven"
+          time={5}
+        />
+        <FilmCard
+          img="/img/might_like_img2.jpg"
+          title="Lillefinger - Marmeladetyven"
+          time={5}
+        />
+        <FilmCard
+          img="/img/might_like_img3.jpg"
+          title="Lillefinger - Hulen"
+          time={5}
+        />
+        <FilmCard
+          img="/img/might_like_img4.jpg"
+          title="Rita og krokodille: Skovturen"
+          time={5}
+        />
+      </div>
+      <!-- Vi tror... slut-->
+    </section>
+    <section>
+      <!-- Vælg kategori start-->
+      <div>
+        <Heading htmlheading="h4" size="h4">Vælg kategori</Heading>
+        <Link teksttype="p_bigger">Se alle kategorier</Link>
+      </div>
+      <div>
+        <CategoryCard icon="/svg/cat_maskiner3.svg" label="Maskiner" />
+        <CategoryCard icon="/svg/cat_prinsesser14.svg" label="Prinsesser" />
+        <CategoryCard icon="/svg/cat_dyr1.svg" label="Dyr" />
+        <CategoryCard icon="/svg/cat_biler6.svg" label="Biler" />
+        <CategoryCard icon="/svg/cat_foelelser11.svg" label="Følelser" />
+        <CategoryCard icon="/svg/cat_rytme7.svg" label="Rytme" />
+      </div>
+      <!-- Vælg kategori slut-->
+    </section>
+    <section>
+      <!-- Fordi du så... start-->
+      <div>
+        <Heading htmlheading="h4" size="h4"
+          >Fordi du så: Mægtige maskiner - Betonkanon</Heading
+        >
+        <Text teksttype="p_smaller">13 afsnit i serien</Text>
+      </div>
+      <div>
+        <FilmCard
+          img="/img/kran_1.jpg"
+          title="Mægtige maskiner - Tårnkran"
+          time={6}
+        />
+        <FilmCard
+          img="/img/fraeser_8.jpg"
+          title="Mægtige maskiner - Fræser"
+          time={6}
+        />
+        <FilmCard
+          img="/img/kaedegraver_4.jpg"
+          title="Mægtige maskiner - Kædegraver"
+          time={6}
+        />
+        <FilmCard
+          img="/img/giraflift_12.jpg"
+          title="Mægtige maskiner - Giraflift"
+          time={6}
+        />
+        <FilmCard
+          img="/img/stribemaler_5.jpg"
+          title="Mægtige maskiner - Stribemaler"
+          time={6}
+        />
+      </div>
+      <!-- Fordi du så... slut-->
+    </section>
+    <section>
+      <!-- Store følelser... start-->
+      <div>
+        <Heading htmlheading="h4" size="h4"
+          >Alt om store følelser i små mennesker</Heading
+        >
+        <Text teksttype="p_smaller">14 programmer</Text>
+      </div>
+      <div>
+        <FilmCard img="/img/foelelser_1.jpg" title="Op med hovedet" time={2} />
+        <FilmCard img="/img/foelelser_2.jpg" title="Hvem er død?" time={4} />
+        <FilmCard img="/img/foelelser_3.jpg" title="Hvem er vred?" time={4} />
+        <FilmCard img="/img/foelelser_4.jpg" title="Op med humøret" time={24} />
+      </div>
+      <!-- Store følelser... slut-->
+    </section>
   </main>
 </MainLayout>
