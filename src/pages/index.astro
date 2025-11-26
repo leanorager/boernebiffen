@@ -12,6 +12,7 @@ import FilmCardTimeline from "../components/FilmCardTimeline.astro";
 import TopTenCard from "../components/TopTenCard.astro";
 import FilmCard from "../components/FilmCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
+import HorizontalScroll from "../components/HorizontalScroll.astro";
 ---
 
 <MainLayout title="Titel">
@@ -67,7 +68,7 @@ import CategoryCard from "../components/CategoryCard.astro";
     <section>
       <!--Se videre start-->
       <Heading htmlheading="h4" size="h4">Se videre</Heading>
-      <div>
+      <HorizontalScroll className="mt-2">
         <FilmCardTimeline
           img="/img/lillefinger_marmeladetyven.jpg"
           title="Lillefinger - Marmeladetyven"
@@ -99,7 +100,7 @@ import CategoryCard from "../components/CategoryCard.astro";
           title="Snuden rejser hjemmefra"
           time={17}
         />
-      </div>
+      </HorizontalScroll>
       <!--Se videre slut-->
     </section>
 
