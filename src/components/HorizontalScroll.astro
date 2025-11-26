@@ -1,0 +1,183 @@
+---
+interface Props {
+  className?: string; // ekstra spacing rundt om rækken, hvis du vil
+  showArrow?: boolean; // hvis du vil kunne slå pilene fra
+}
+
+const { className = "", showArrow = true } = Astro.props;
+---
+
+<div class:list={["relative", className]} data-hscroll-wrapper>
+  <!-- Selve scrolleren -->
+  <div
+    class="w-[100dvw] -mx-4 pl-4 pr-4
+           lg:mx-0 lg:pl-0 lg:w-full
+           overflow-x-auto scroll-smooth
+           snap-x snap-mandatory
+           [-ms-overflow-style:none]
+           [scrollbar-width:none]
+           [&::-webkit-scrollbar]:hidden"
+    data-hscroll
+  >
+    <div class="flex flex-nowrap gap-4 lg:gap-6" data-hscroll-track>
+      <slot />
+    </div>
+  </div>
+
+  {showArrow && (
+    <>
+      <!-- Venstre pil (desktop) -->
+      <button
+        type="button"
+        class="hidden lg:flex items-center justify-start
+               absolute inset-y-0 left-0
+               h-[100%] 
+               bg-gradient-to-r from-black/60 to-transparent
+               cursor-pointer
+               transition-opacity duration-200
+               opacity-0 pointer-events-none"
+        data-hscroll-prev
+        aria-label="Scroll tilbage"
+      >
+        <img
+          src="/svg/arrow_left.svg"
+          alt=""
+          aria-hidden="true"
+          class="h-full w-auto"
+        />
+      </button>
+
+      <!-- Højre pil (desktop) -->
+      <button
+        type="button"
+        class="hidden lg:flex items-center justify-end
+               absolute inset-y-0 right-0
+               h-[100%] 
+               bg-gradient-to-l from-black/60 to-transparent
+               cursor-pointer
+               transition-opacity duration-200
+               opacity-100"
+        data-hscroll-next
+        aria-label="Scroll videre"
+      >
+        <img
+          src="/svg/arrow_right.svg"
+          alt=""
+          aria-hidden="true"
+          class="h-full w-auto"
+        />
+      </button>
+    </>
+  )}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-hscroll-wrapper]").forEach((wrapper) => {
+      const scroller = wrapper.querySelector("[data-hscroll]");
+      const track = wrapper.querySelector("[data-hscroll-track]");
+      const nextBtn = wrapper.querySelector("[data-hscroll-next]");
+      const prevBtn = wrapper.querySelector("[data-hscroll-prev]");
+
+      if (!scroller || !track) return;
+
+      const SCROLL_AMOUNT = () => scroller.clientWidth * 0.8;
+
+      let lastIsFullyVisible = false;
+
+      function updateButtons() {
+        if (!nextBtn || !prevBtn) return;
+
+        const x = scroller.scrollLeft;
+
+        // --- venstre pil: gem når vi er helt til venstre ---
+        if (x <= 5) {
+          prevBtn.classList.add("opacity-0", "pointer-events-none");
+          prevBtn.classList.remove("opacity-100");
+        } else {
+          prevBtn.classList.remove("opacity-0", "pointer-events-none");
+          prevBtn.classList.add("opacity-100");
+        }
+
+        // --- højre pil: gem når sidste card er helt inde i viewport ---
+        const lastChild = track.lastElementChild;
+        let nearEnd = false;
+
+        if (lastChild && lastChild instanceof HTMLElement) {
+          // Use offsetLeft/offsetWidth to measure position relative to the track (more reliable than
+          // getBoundingClientRect which can be affected by transforms/padding/scrollbars)
+          const lastRight = lastChild.offsetLeft + lastChild.offsetWidth;
+          const visibleRight = scroller.scrollLeft + scroller.clientWidth;
+
+          // Hvis sidste cards højre kant er inde i scrollerens viewport => nearEnd
+          nearEnd = lastRight <= visibleRight + 4;
+        }
+
+        // Fallback: hvis vi kan scrolle lige akkurat ikke (output af scrollWidth) — skjul også pilen
+        const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
+        if (maxScrollLeft <= 5 || scroller.scrollLeft >= maxScrollLeft - 5) {
+          nearEnd = true;
+        }
+
+        // Hvis IO rapporterer at sidste element er fuldt synligt, er vi også ved enden
+        if (lastIsFullyVisible) nearEnd = true;
+
+        if (nearEnd) {
+          nextBtn.classList.add("opacity-0", "pointer-events-none");
+          nextBtn.classList.remove("opacity-100");
+        } else {
+          nextBtn.classList.remove("opacity-0", "pointer-events-none");
+          nextBtn.classList.add("opacity-100");
+        }
+      }
+
+      
+
+      // OBSERVER: brug IntersectionObserver for at finde om sidste card er fuldstændigt synligt
+      const watchLast = () => {
+        const last = track.lastElementChild;
+        if (!last) return;
+        if (!(last instanceof HTMLElement)) return;
+
+        try {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              lastIsFullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.99;
+              updateButtons();
+            });
+          }, { root: scroller, threshold: [0.99] });
+
+          io.observe(last);
+        } catch (e) {
+          // IntersectionObserver may not be supported in some older environments—ignore in that case
+        }
+      };
+
+      // ensure we observe initially
+      watchLast();
+
+      // klik på højre pil
+      nextBtn?.addEventListener("click", () => {
+        scroller.scrollBy({ left: SCROLL_AMOUNT(), behavior: "smooth" });
+      });
+
+      // klik på venstre pil
+      prevBtn?.addEventListener("click", () => {
+        scroller.scrollBy({ left: -SCROLL_AMOUNT(), behavior: "smooth" });
+      });
+
+      // opdater ved scroll, resize og initialt
+      scroller.addEventListener("scroll", updateButtons, { passive: true });
+      window.addEventListener("resize", updateButtons, { passive: true });
+
+      // OBSERVER: hvis layout eller størrelse i track ændres, opdatér knapper
+      const ro = new ResizeObserver(updateButtons);
+      ro.observe(scroller);
+      ro.observe(track);
+
+      updateButtons();
+    });
+  });
+</script>
+
+

@@ -1,19 +1,21 @@
 ---
 interface Props {
-  image: string; // fx "/images/vitello.png"
-  alt?: string; //
-  stylingclasses?: string; //
+  image: string;
+  alt?: string;
+  stylingclasses?: string;
 }
 
 const { image, alt = "", stylingclasses = "" } = Astro.props;
 
-// Fælles styling for cardet (match det på billedet)
+// Fælles styling (som før)
 const baseClasses =
   "rounded-[5px] overflow-hidden shadow-md flex items-center justify-center" +
-  "transition-transform duration-300 hover:scale-[1.03]";
+  " transition-transform duration-300 hover:scale-[1.03]";
 ---
 
-<article class:list={[baseClasses, stylingclasses]}>
+<article
+  class:list={["shrink-0 w-[275px] lg:w-[275px]", baseClasses, stylingclasses]}
+>
   <img
     src={image}
     alt={alt}

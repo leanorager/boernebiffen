@@ -11,7 +11,10 @@ interface Props {
 const { img, title, time, href = "/singleview" } = Astro.props;
 ---
 
-<a href={href} class="block w-[372px] lg:w-[440px] group cursor-pointer">
+<a
+  href={href}
+  class="block w-[372px] lg:w-[440px] shrink-0 group cursor-pointer"
+>
   <article>
     <!-- Wrapper så vi kan lave overlay + arrow -->
     <div class="relative w-full h-auto rounded-[5px] overflow-hidden">

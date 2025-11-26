@@ -12,6 +12,7 @@ import FilmCardTimeline from "../components/FilmCardTimeline.astro";
 import TopTenCard from "../components/TopTenCard.astro";
 import FilmCard from "../components/FilmCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
+import HorizontalScroll from "../components/HorizontalScroll.astro";
 ---
 
 <MainLayout title="Titel">
@@ -64,10 +65,10 @@ import CategoryCard from "../components/CategoryCard.astro";
 
       <!--Hero slut-->
     </section>
-    <section>
+    <section class="pl-4 py-10 lg:pl-12 lg:py-20">
       <!--Se videre start-->
       <Heading htmlheading="h4" size="h4">Se videre</Heading>
-      <div>
+      <HorizontalScroll className="mt-2 lg:mt-4.5">
         <FilmCardTimeline
           img="/img/lillefinger_marmeladetyven.jpg"
           title="Lillefinger - Marmeladetyven"
@@ -99,17 +100,19 @@ import CategoryCard from "../components/CategoryCard.astro";
           title="Snuden rejser hjemmefra"
           time={17}
         />
-      </div>
+      </HorizontalScroll>
       <!--Se videre slut-->
     </section>
 
-    <section>
+    <section class="pl-4 py-10 lg:pl-12 lg:py-20">
       <!-- UniverseCard start-->
-      <div>
+      <div class="flex justify-between pr-4 lg:pr-12">
         <Heading htmlheading="h4" size="h4">Populære universer</Heading>
-        <Text teksttype="p_smaller">12 universer</Text>
+        <Text teksttype="p_smaller" stylingclasses="place-self-end"
+          >12 universer</Text
+        >
       </div>
-      <div>
+      <HorizontalScroll className="mt-2 lg:mt-4.5">
         <section class="w-[275px]">
           <Card image="/img/vitello.jpg" alt="Vitello cover" />
         </section>
@@ -149,16 +152,16 @@ import CategoryCard from "../components/CategoryCard.astro";
         <section class="w-[275px]">
           <Card image="/img/cirkeline.jpg" alt="Cirkeline cover" />
         </section>
-      </div>
+      </HorizontalScroll>
       <!-- UniverseCard slut-->
     </section>
-    <section>
+    <section class="pl-4 py-10 lg:pl-12 lg:py-20">
       <!-- Top 10 start-->
-      <div>
+      <div class="flex justify-between pr-4 lg:pr-12">
         <Heading htmlheading="h4" size="h4">Mest populære</Heading>
         <Text teksttype="p_smaller">Top 10 mest sete</Text>
       </div>
-      <div>
+      <HorizontalScroll className="mt-2 lg:mt-4.5">
         <TopTenCard
           img="/img/top10_1.jpg"
           title="Lillefinger - Marmeladetyven"
@@ -219,14 +222,14 @@ import CategoryCard from "../components/CategoryCard.astro";
           time={7}
           rank={10}
         />
-      </div>
+      </HorizontalScroll>
       <!-- Top 10 slut-->
     </section>
-    <section>
+    <section class="pl-4 py-10 lg:pl-12 lg:py-20">
       <!-- Vi tror... start-->
       <Heading htmlheading="h4" size="h4">Vi tror, du kan lide disse...</Heading
       >
-      <div>
+      <HorizontalScroll className="mt-2 lg:mt-4.5">
         <FilmCard
           img="/img/might_like_img1.jpg"
           title="Lillefinger - Min bedste ven"
@@ -247,16 +250,25 @@ import CategoryCard from "../components/CategoryCard.astro";
           title="Rita og krokodille: Skovturen"
           time={5}
         />
-      </div>
+      </HorizontalScroll>
       <!-- Vi tror... slut-->
     </section>
-    <section>
+    <section class="pl-4 py-10 lg:pl-12 lg:py-20">
       <!-- Vælg kategori start-->
-      <div>
+      <div class="flex justify-between pr-4 lg:pr-12">
         <Heading htmlheading="h4" size="h4">Vælg kategori</Heading>
-        <Link teksttype="p_bigger">Se alle kategorier</Link>
+        <div class="flex flex-row gap-2 items-center">
+          <Link teksttype="p_bigger">Se alle kategorier</Link>
+          <img src="/svg/small_arrow.svg" alt="Pil" class="h-[12px] w-auto" />
+        </div>
       </div>
-      <div>
+      <div
+        class="mt-2 lg:mt-4.5 pr-4 lg:pr-12
+           grid gap-4
+           grid-cols-2
+           md:grid-cols-3
+           lg:grid-cols-6"
+      >
         <CategoryCard icon="/svg/cat_maskiner3.svg" label="Maskiner" />
         <CategoryCard icon="/svg/cat_prinsesser14.svg" label="Prinsesser" />
         <CategoryCard icon="/svg/cat_dyr1.svg" label="Dyr" />
@@ -266,15 +278,15 @@ import CategoryCard from "../components/CategoryCard.astro";
       </div>
       <!-- Vælg kategori slut-->
     </section>
-    <section>
+    <section class="pl-4 py-10 lg:pl-12 lg:py-20">
       <!-- Fordi du så... start-->
-      <div>
+      <div class="flex justify-between pr-4 lg:pr-12">
         <Heading htmlheading="h4" size="h4"
           >Fordi du så: Mægtige maskiner - Betonkanon</Heading
         >
         <Text teksttype="p_smaller">13 afsnit i serien</Text>
       </div>
-      <div>
+      <HorizontalScroll className="mt-2 lg:mt-4.5">
         <FilmCard
           img="/img/kran_1.jpg"
           title="Mægtige maskiner - Tårnkran"
@@ -300,23 +312,23 @@ import CategoryCard from "../components/CategoryCard.astro";
           title="Mægtige maskiner - Stribemaler"
           time={6}
         />
-      </div>
+      </HorizontalScroll>
       <!-- Fordi du så... slut-->
     </section>
-    <section>
+    <section class="pl-4 py-10 lg:pl-12 lg:py-20">
       <!-- Store følelser... start-->
-      <div>
+      <div class="flex justify-between pr-4 lg:pr-12">
         <Heading htmlheading="h4" size="h4"
           >Alt om store følelser i små mennesker</Heading
         >
         <Text teksttype="p_smaller">14 programmer</Text>
       </div>
-      <div>
+      <HorizontalScroll className="mt-2 lg:mt-4.5">
         <FilmCard img="/img/foelelser_1.jpg" title="Op med hovedet" time={2} />
         <FilmCard img="/img/foelelser_2.jpg" title="Hvem er død?" time={4} />
         <FilmCard img="/img/foelelser_3.jpg" title="Hvem er vred?" time={4} />
         <FilmCard img="/img/foelelser_4.jpg" title="Op med humøret" time={24} />
-      </div>
+      </HorizontalScroll>
       <!-- Store følelser... slut-->
     </section>
   </main>

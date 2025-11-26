@@ -13,7 +13,10 @@ interface Props {
 const { img, title, time, rank, href = "/singleview" } = Astro.props;
 ---
 
-<a href={href} class="block w-[302px] lg:w-[466px] group cursor-pointer">
+<a
+  href={href}
+  class="block w-[302px] lg:w-[466px] shrink-0 group cursor-pointer"
+>
   <article>
     <!-- Wrapper for billede + rank-tal -->
     <div class="relative w-full h-auto">
