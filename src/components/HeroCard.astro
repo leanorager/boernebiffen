@@ -133,20 +133,23 @@ const wrapperClasses =
         >
           {description}
         </p>
-      </div>
-      <!-- Knapper -->
-      <div class="flex flex-wrap gap-x-1 gap-y-3">
-        <Button variant="primary" icon={playIcon}>
-          {playLabel}
-        </Button>
 
-        {
-          favoriteLabel && favoriteIcon && (
-            <Button variant="secondary" icon={favoriteIcon}>
-              {favoriteLabel}
+        <!--knapper -->
+        <div class="flex flex-wrap gap-x-1 gap-y-3">
+          <a href="/singleview">
+            <Button variant="primary" icon={playIcon}>
+              {playLabel}
             </Button>
-          )
-        }
+          </a>
+
+          {
+            favoriteLabel && favoriteIcon && (
+              <Button variant="secondary" icon={favoriteIcon}>
+                {favoriteLabel}
+              </Button>
+            )
+          }
+        </div>
       </div>
     </div>
   </div>
