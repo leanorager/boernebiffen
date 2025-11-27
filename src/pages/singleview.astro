@@ -4,8 +4,56 @@ import Heading from "../components/Heading.astro";
 import Text from "../components/Text.astro";
 import Link from "../components/Link.astro";
 import FilmCard from "../components/FilmCard.astro";
+import HeroCard from "../components/HeroCard.astro";
+import HorizontalScroll from "../components/HorizontalScroll.astro";
 ---
 
 <MainLayout>
-  <main></main>
+  <main>
+    <HeroCard
+      backgroundImage="/img/lillefinger_hulen.png"
+      logo="/svg/lillefinger_logo.svg"
+      genre="Animation/Eventyr"
+      year="2012"
+      duration="45 min"
+      ageLabel="3–7 år"
+      showHdTag={true}
+      heading="Hulen"
+      description="Lillefinger vil gerne lege med Myren, men Myren har travlt med at passe sine homies i det lille hus. Da Lillefingers marmelade pludselig forsvinder, går han på jagt efter den hemmelige tyv. En sød og rolig historie om venskab, nysgerrighed og at forstå hinanden."
+      playLabel="Afspil"
+      playIcon="/svg/play.svg"
+      favoriteLabel="Mine favoritter"
+      favoriteIcon="/svg/heart.svg"
+    />
+    <section class="pl-4 py-10 lg:pl-12 lg:py-20">
+      <Heading htmlheading="h4" size="h4">Mere som dette</Heading>
+      <HorizontalScroll className="mt-2 lg:mt-4.5">
+        <FilmCard
+          img="/img/view_more_1.jpg"
+          title="Lillefinger - Hulen"
+          time={5}
+        />
+        <FilmCard
+          img="/img/view_more_2.jpg"
+          title="Lillefinger - Klippesprækken"
+          time={5}
+        />
+        <FilmCard
+          img="/img/view_more_3.jpg"
+          title="Lillefinger - Fødselsdagen"
+          time={5}
+        />
+        <FilmCard
+          img="/img/view_more_4.jpg"
+          title="Lillefinger - Myrens fly"
+          time={5}
+        />
+        <FilmCard
+          img="/img/view_more_5.jpg"
+          title="Lillefinger - Det frosne dyr"
+          time={5}
+        />
+      </HorizontalScroll>
+    </section>
+  </main>
 </MainLayout>
