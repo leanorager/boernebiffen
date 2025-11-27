@@ -1,6 +1,7 @@
 ---
 import Text from "../components/Text.astro";
 import Link from "../components/Link.astro";
+import Heading from "../components/Heading.astro";
 ---
 
 <footer class="bg-dark-gray">
@@ -25,9 +26,9 @@ import Link from "../components/Link.astro";
       >
         <!-- Kontakt -->
         <div class="mb-12 lg:mb-0">
-          <h5 class="text-off-white font-bold text-base md:text-xl mb-4">
-            Kontakt
-          </h5>
+          <div class="mb-3">
+            <Heading htmlheading="h5" size="h5"> Kontakt </Heading>
+          </div>
           <div class="space-y-1">
             <div>
               <Link href="mailto:bornebiffen@kontakt.dk" teksttype="p">
@@ -54,9 +55,10 @@ import Link from "../components/Link.astro";
 
         <!-- Information -->
         <div class="mt-6 lg:mt-0 mb-12 lg:mb-0">
-          <h5 class="text-off-white font-bold text-base md:text-xl mb-4">
-            Information
-          </h5>
+          <div class="mb-3">
+            <Heading htmlheading="h5" size="h5"> Information </Heading>
+          </div>
+
           <ul class="space-y-1">
             <li>
               <Link href="#" teksttype="p">Support og kundeservice</Link>
@@ -75,9 +77,9 @@ import Link from "../components/Link.astro";
 
         <!-- Socials -->
         <div class="mt-6 lg:mt-0 flex flex-col items-start">
-          <h5 class="text-off-white font-bold text-base md:text-xl mb-4">
-            Socials
-          </h5>
+          <div class="mb-3">
+            <Heading htmlheading="h5" size="h5"> Socials </Heading>
+          </div>
 
           <div class="flex gap-3 mb-6">
             <a
