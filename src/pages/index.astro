@@ -250,21 +250,13 @@ import HorizontalScroll from "../components/HorizontalScroll.astro";
           title="Rita og krokodille: Skovturen"
           time={5}
         />
-        <FilmCard
-          img="/img/Godbid.jpg"
-          title="Godbid"
-          time={1}
-        />
+        <FilmCard img="/img/Godbid.jpg" title="Godbid" time={1} />
         <FilmCard
           img="/img/Vitello_graver.jpg"
           title="Vitello graver et hul"
           time={7}
         />
-        <FilmCard
-          img="/img/Naboer.jpg"
-          title="Naboer"
-          time={7}
-        />
+        <FilmCard img="/img/Naboer.jpg" title="Naboer" time={7} />
         <FilmCard
           img="/img/Piratskibet.jpg"
           title="Min oldefars historier - Piratskibet"
@@ -278,7 +270,7 @@ import HorizontalScroll from "../components/HorizontalScroll.astro";
       <div class="flex justify-between pr-4 lg:pr-12">
         <Heading htmlheading="h4" size="h4">Vælg kategori</Heading>
         <div class="flex flex-row gap-2 items-center">
-          <Link teksttype="p_bigger">Se alle kategorier</Link>
+          <Link teksttype="p_bigger" href="/category">Se alle kategorier</Link>
           <img src="/svg/small_arrow.svg" alt="Pil" class="h-[12px] w-auto" />
         </div>
       </div>
@@ -337,7 +329,7 @@ import HorizontalScroll from "../components/HorizontalScroll.astro";
           title="Mægtige maskiner – Sorteringsmaskine"
           time={6}
         />
-         <FilmCard
+        <FilmCard
           img="/img/Borerig.jpg"
           title="Mægtige maskiner – Borerig"
           time={6}
@@ -368,9 +360,21 @@ import HorizontalScroll from "../components/HorizontalScroll.astro";
         <FilmCard img="/img/foelelser_2.jpg" title="Hvem er død?" time={4} />
         <FilmCard img="/img/foelelser_3.jpg" title="Hvem er vred?" time={4} />
         <FilmCard img="/img/foelelser_4.jpg" title="Op med humøret" time={24} />
-        <FilmCard img="/img/Snuttefilm_komMED.jpg" title="Snuttefilm - Alle må komme med" time={5} />
-        <FilmCard img="/img/koldVinter.jpg" title="Lillefinger - Hvid kold vinter" time={5} />
-        <FilmCard img="/img/SimonsAnd.jpg" title="Snuttefilm - Simons and" time={5} />
+        <FilmCard
+          img="/img/Snuttefilm_komMED.jpg"
+          title="Snuttefilm - Alle må komme med"
+          time={5}
+        />
+        <FilmCard
+          img="/img/koldVinter.jpg"
+          title="Lillefinger - Hvid kold vinter"
+          time={5}
+        />
+        <FilmCard
+          img="/img/SimonsAnd.jpg"
+          title="Snuttefilm - Simons and"
+          time={5}
+        />
         <FilmCard img="/img/hvemErSyg.jpg" title="Hvem er syg?" time={5} />
       </HorizontalScroll>
       <!-- Store følelser... slut-->
