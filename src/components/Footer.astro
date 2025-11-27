@@ -1,74 +1,138 @@
 ---
-import Text from '../components/Text.astro';
+import Text from "../components/Text.astro";
+import Link from "../components/Link.astro";
 ---
+
 <footer class="bg-dark-gray">
   <div class="max-w-screen-2xl mx-auto px-4 lg:px-12 py-10 lg:py-16">
-
     <div class="lg:grid lg:grid-cols-12 lg:gap-y-8 lg:gap-x-8">
-      
       <!-- logo + beskrivelse (venstre side) -->
       <div class="lg:col-span-5 mb-8 lg:mb-0">
-        <img src="/public/svg/bornebiffen_logo.svg" alt="Børnebiffen logo" class="w-96 md:w-96 lg:w-80 mb-4" />
+        <img
+          src="/public/svg/bornebiffen_logo.svg"
+          alt="Børnebiffen logo"
+          class="w-96 md:w-96 lg:w-80 mb-4"
+        />
         <Text teksttype="p" stylingclasses="leading-relaxed lg:max-w-none">
-          Børnebiffen.dk indeholder gratis film og serier for børn i alderen 3–7 år. Kurateret, trygt og kvalitetsrigt indhold tilpasset børn.
+          Børnebiffen.dk indeholder gratis film og serier for børn i alderen 3–7
+          år. Kurateret, trygt og kvalitetsrigt indhold tilpasset børn.
         </Text>
       </div>
 
       <!-- højre side: 3 lige store kolonner -->
-      <div class="mt-8 lg:mt-2 lg:col-span-7 lg:grid lg:grid-cols-3 md:gap-x-16">
+      <div
+        class="mt-8 lg:mt-2 lg:col-span-7 lg:grid lg:grid-cols-3 md:gap-x-16"
+      >
         <!-- Kontakt -->
         <div class="mb-12 lg:mb-0">
           <h5 class="text-off-white font-bold text-base md:text-xl mb-4">
             Kontakt
-        </h5>
-          <div class="space-y-3">
+          </h5>
+          <div class="space-y-1">
             <div>
-              <a href="mailto:bornebiffen@kontakt.dk" class="hover:underline">
-                <Text teksttype="p">bornebiffen@kontakt.dk</Text>
-              </a>
+              <Link href="mailto:bornebiffen@kontakt.dk" teksttype="p">
+                bornebiffen@kontakt.dk
+              </Link>
             </div>
+
             <div>
-              <Text teksttype="p">+45 34 23 54 54</Text>
+              <Link href="tel:+4534235454" teksttype="p">
+                +45 34 23 54 54
+              </Link>
             </div>
+
             <div>
-              <Text teksttype="p">Store Strandstræde 20<br />1255 København K</Text>
+              <Link
+                href="https://www.google.com/maps?q=Store+Strandstræde+20,+1255+København+K"
+                teksttype="p"
+              >
+                Store Strandstræde 20<br />1255 København K
+              </Link>
             </div>
           </div>
         </div>
 
         <!-- Information -->
         <div class="mt-6 lg:mt-0 mb-12 lg:mb-0">
-          <h5 class="text-off-white font-bold text-base md:text-xl mb-4"> Information
-
+          <h5 class="text-off-white font-bold text-base md:text-xl mb-4">
+            Information
           </h5>
-          <ul class="space-y-3">
-            <li><a href="#" class="hover:underline"><Text teksttype="p">Support og kundeservice</Text></a></li>
-            <li><a href="#" class="hover:underline"><Text teksttype="p">Cookies</Text></a></li>
-            <li><a href="#" class="hover:underline"><Text teksttype="p">Privatlivspolitik</Text></a></li>
-            <li><a href="#" class="hover:underline"><Text teksttype="p">Vilkår og betingelser</Text></a></li>
+          <ul class="space-y-1">
+            <li>
+              <Link href="#" teksttype="p">Support og kundeservice</Link>
+            </li>
+            <li>
+              <Link href="#" teksttype="p">Cookies</Link>
+            </li>
+            <li>
+              <Link href="#" teksttype="p">Privatlivspolitik</Link>
+            </li>
+            <li>
+              <Link href="#" teksttype="p">Vilkår og betingelser</Link>
+            </li>
           </ul>
         </div>
 
         <!-- Socials -->
-        <div class="mt-6 lg:mt-0 flex flex-col items-start ">
-          <h5 class="text-off-white font-bold text-base md:text-xl mb-4">Socials
-
+        <div class="mt-6 lg:mt-0 flex flex-col items-start">
+          <h5 class="text-off-white font-bold text-base md:text-xl mb-4">
+            Socials
           </h5>
 
           <div class="flex gap-3 mb-6">
-            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="transform transition-transform duration-400 hover:scale-110">
-              <img src="/public/svg/instagram.svg" alt="Instagram" class="w-8 h-8 lg:w-9 lg:h-9" />
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              class="transform transition-transform duration-400 hover:scale-110"
+            >
+              <img
+                src="/public/svg/instagram.svg"
+                alt="Instagram"
+                class="w-8 h-8 lg:w-9 lg:h-9"
+              />
             </a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="transform transition-transform duration-400 hover:scale-110">
-              <img src="/public/svg/facebook.svg" alt="Facebook" class="w-8 h-8 lg:w-9 lg:h-9" />
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              class="transform transition-transform duration-400 hover:scale-110"
+            >
+              <img
+                src="/public/svg/facebook.svg"
+                alt="Facebook"
+                class="w-8 h-8 lg:w-9 lg:h-9"
+              />
             </a>
-            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="transform transition-transform duration-400 hover:scale-110">
-              <img src="/public/svg/youtube.svg" alt="YouTube" class="w-8 h-8 lg:w-9 lg:h-9" />
+            <a
+              href="https://www.youtube.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              class="transform transition-transform duration-400 hover:scale-110"
+            >
+              <img
+                src="/public/svg/youtube.svg"
+                alt="YouTube"
+                class="w-8 h-8 lg:w-9 lg:h-9"
+              />
             </a>
           </div>
 
-          <a href="https://apps.apple.com/app" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store" class="transform transition duration-400 hover:scale-105 inline-block">
-            <img src="/public/img/app_store.png" alt="Download on the App Store" class="w-36 lg:w-44" />
+          <a
+            href="https://apps.apple.com/app"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download on the App Store"
+            class="transform transition duration-400 hover:scale-105 inline-block"
+          >
+            <img
+              src="/public/img/app_store.png"
+              alt="Download on the App Store"
+              class="w-36 lg:w-44"
+            />
           </a>
         </div>
       </div>
