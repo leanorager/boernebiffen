@@ -1,0 +1,285 @@
+---
+interface Props {
+  autoInterval?: number; // ms mellem skift – fx 7000
+}
+
+const { autoInterval = 7000 } = Astro.props;
+---
+
+<section
+  class="relative w-full bg-black overflow-x-hidden"
+  data-hero-carousel
+  data-interval={autoInterval}
+>
+  <div class="mx-auto max-w-[1600px] px-0 md:px-4">
+    <!-- Viewport med overflow-hidden -->
+    <div class="relative overflow-hidden">
+      <!-- Selve tracket -->
+      <div
+        class="flex gap-4 md:gap-6 py-6 will-change-transform"
+        data-hero-track
+      >
+        <slot />
+      </div>
+    </div>
+  </div>
+
+  <!-- Dots nederst (opdateres med JS) -->
+  <div
+    class="pointer-events-none absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 translate-y-[15px] gap-2"
+    data-hero-dots
+  >
+  </div>
+</section>
+
+<style>
+  /* Gør hvert slide til et “kort”, der kan stå ved siden af hinanden */
+  :global([data-hero-track] > *) {
+    flex: 0 0 100%;
+  }
+
+  @media (min-width: 768px) {
+    :global([data-hero-track] > *) {
+      flex: 0 0 90%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :global([data-hero-track] > *) {
+      flex: 0 0 80%;
+    }
+  }
+
+  /* Cursor til drag */
+  :global([data-hero-track]) {
+    cursor: grab;
+  }
+
+  :global([data-hero-track].is-dragging) {
+    cursor: grabbing;
+  }
+</style>
+
+<script>
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("[data-hero-carousel]").forEach((wrapper) => {
+        const track = wrapper.querySelector("[data-hero-track]");
+        if (!track) return;
+
+        let slides = Array.from(track.children);
+        if (slides.length <= 1) return;
+
+        const intervalMs = Number(
+          wrapper.getAttribute("data-interval") || "7000",
+        );
+
+        // Lav kloner så vi kan loope uendeligt
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+        track.insertBefore(lastClone, slides[0]);
+        track.appendChild(firstClone);
+
+        let allSlides = Array.from(track.children); // inkl. kloner
+        let index = 1; // starter på første “rigtige” slide
+
+        // Dots
+        const dotsContainer = wrapper.querySelector("[data-hero-dots]");
+        const dots = slides.map((_s, i) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.setAttribute("data-index", String(i));
+          dot.className =
+            "h-[8px] w-[8px] rounded-full bg-white/30 border-none mx-[2px] pointer-events-auto";
+          dotsContainer?.appendChild(dot);
+
+          dot.addEventListener("click", () => {
+            index = i + 1; // rigtige slides er skubbet 1 pga. klon i starten
+            updatePosition(true);
+            updateDots();
+            restartTimer();
+          });
+
+          return dot;
+        });
+
+        function activeRealIndex() {
+          // map 0..(n+1) -> 0..(n-1)
+          return (index - 1 + slides.length) % slides.length;
+        }
+
+        function updateDots() {
+          const real = activeRealIndex();
+          dots.forEach((dot, i) => {
+            if (i === real) {
+              dot.classList.add("bg-off-white");
+              dot.classList.remove("bg-white/30");
+            } else {
+              dot.classList.remove("bg-off-white");
+              dot.classList.add("bg-white/30");
+            }
+          });
+        }
+
+        let slideWidth = 0;
+
+        function recalcWidth() {
+          const slide = allSlides[index];
+          if (!slide) return;
+          const rect = slide.getBoundingClientRect();
+          const style = getComputedStyle(slide);
+          const marginRight = parseFloat(style.marginRight || "0");
+          slideWidth = rect.width + marginRight;
+
+          track.style.transition = "none";
+          track.style.transform = `translateX(-${index * slideWidth}px)`;
+        }
+
+        function updatePosition(animate) {
+          track.style.transition = animate
+            ? "transform 600ms ease-out"
+            : "none";
+          track.style.transform = `translateX(-${index * slideWidth}px)`;
+        }
+
+        // Når animationen er færdig, hop usynligt tilbage, hvis vi står på en klon
+        track.addEventListener("transitionend", () => {
+          if (index === 0) {
+            index = slides.length; // vi stod på lastClone
+            updatePosition(false);
+          } else if (index === slides.length + 1) {
+            index = 1; // vi stod på firstClone
+            updatePosition(false);
+          }
+          updateDots();
+        });
+
+        // Autoplay
+        let timer;
+
+        function startTimer() {
+          stopTimer();
+          timer = window.setInterval(() => {
+            index += 1;
+            updatePosition(true);
+          }, intervalMs);
+        }
+
+        function stopTimer() {
+          if (timer) window.clearInterval(timer);
+        }
+
+        function restartTimer() {
+          stopTimer();
+          startTimer();
+        }
+
+        // ---- DRAG / SWIPE INTERAKTION ----
+        let isDragging = false;
+        let startX = 0;
+        let startTranslate = 0;
+
+        function getCurrentTranslate() {
+          const match = (track.style.transform || "").match(/-?\d+(\.\d+)?/);
+          if (match) return parseFloat(match[0]);
+          // fallback til “logisk” position
+          return -index * slideWidth;
+        }
+
+        track.addEventListener("pointerdown", (event) => {
+          if (slideWidth === 0) recalcWidth();
+
+          isDragging = true;
+          track.classList.add("is-dragging");
+          startX = event.clientX;
+          startTranslate = getCurrentTranslate();
+          stopTimer();
+
+          track.setPointerCapture(event.pointerId);
+        });
+
+        track.addEventListener("pointermove", (event) => {
+          if (!isDragging) return;
+
+          const deltaX = event.clientX - startX;
+          const nextTranslate = startTranslate + deltaX;
+
+          track.style.transition = "none";
+          track.style.transform = `translateX(${nextTranslate}px)`;
+        });
+
+        function endDrag(event) {
+          if (!isDragging) return;
+          isDragging = false;
+          track.classList.remove("is-dragging");
+          track.releasePointerCapture(event.pointerId);
+
+          const deltaX = event.clientX - startX;
+          const movedTranslate = startTranslate + deltaX;
+
+          // Find nærmeste slide baseret på, hvor langt vi er trukket
+          const approxIndex = -movedTranslate / slideWidth;
+          index = Math.round(approxIndex);
+
+          updatePosition(true);
+          updateDots();
+          restartTimer();
+        }
+
+        track.addEventListener("pointerup", endDrag);
+        track.addEventListener("pointercancel", endDrag);
+
+        // ---- SWIPE MED TOUCHPAD / MUSEHJUL (2-fingers swipe på Mac) ----
+        let wheelLocked = false;
+
+        track.addEventListener(
+          "wheel",
+          (event) => {
+            if (wheelLocked || slideWidth === 0) return;
+
+            const { deltaX, deltaY } = event;
+
+            // Vælg den akse der "fylder mest" (horisontal vs vertikal)
+            const useX = Math.abs(deltaX) >= Math.abs(deltaY);
+            const primaryDelta = useX ? deltaX : deltaY;
+
+            // For små bevægelser ignoreres
+            if (Math.abs(primaryDelta) < 10) return;
+
+            // Vi tager selv kontrol over scrollen
+            event.preventDefault();
+
+            // Positiv = ét slide frem, negativ = ét slide tilbage
+            if (primaryDelta > 0) {
+              index += 1;
+            } else {
+              index -= 1;
+            }
+
+            wheelLocked = true;
+            updatePosition(true);
+            updateDots();
+            restartTimer();
+
+            // Lås op igen efter animationen
+            window.setTimeout(() => {
+              wheelLocked = false;
+            }, 650);
+          },
+          { passive: false },
+        );
+
+        // Pause når man holder musen over (desktop)
+        wrapper.addEventListener("mouseenter", stopTimer);
+        wrapper.addEventListener("mouseleave", startTimer);
+
+        // Recalc på load + resize
+        recalcWidth();
+        window.addEventListener("resize", recalcWidth);
+
+        updateDots();
+        startTimer();
+      });
+    });
+  }
+</script>
