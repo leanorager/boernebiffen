@@ -26,7 +26,7 @@ const { autoInterval = 7000 } = Astro.props;
 
   <!-- Dots nederst (opdateres med JS) -->
   <div
-    class="pointer-events-none absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 translate-y-[15px] gap-2"
+    class="pointer-events-none absolute bottom-4 left-1/2 flex -translate-x-1/2 translate-y-[15px] gap-2"
     data-hero-dots
   >
   </div>
@@ -187,6 +187,17 @@ const { autoInterval = 7000 } = Astro.props;
         }
 
         track.addEventListener("pointerdown", (event) => {
+          const target = event.target;
+          // 👇 VIGTIGT: klik på links/knapper inde i slidet
+          // skal IKKE starte drag – så lader vi bare browseren
+          // håndtere klikket (fx navigation).
+          if (
+            target instanceof HTMLElement &&
+            (target.closest("a") || target.closest("button"))
+          ) {
+            return;
+          }
+
           if (slideWidth === 0) recalcWidth();
 
           isDragging = true;
