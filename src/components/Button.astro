@@ -1,37 +1,55 @@
 ---
 interface Props {
-  variant?: "primary" | "secondary"; // styrer farve
-  icon: string; // fx "/svg/play.svg"
+  variant?: "primary" | "secondary";
+  icon: string;
+  href?: string;
   type?: "button" | "submit" | "reset";
-  stylingclasses?: string; // ekstra tailwind hvis du får brug for det
+  stylingclasses?: string;
 }
 
 const {
   variant = "primary",
   icon,
+  href,
   type = "button",
   stylingclasses = "",
 } = Astro.props;
 
-// Fælles styling for ALLE knapper (fast størrelse, padding, radius)
 const baseClasses =
   "inline-flex items-center justify-center gap-3 rounded-full px-8 py-3 " +
   "text-[16px] font-medium transition-colors duration-200";
 
-// Varianter der kun ændrer farver
 const variantClasses = {
   primary: "bg-orange text-off-white hover:bg-[#CD4F00]",
   secondary: "bg-gray text-off-white hover:bg-dark-gray",
 };
 ---
 
-<button
-  type={type}
-  class:list={[baseClasses, variantClasses[variant], stylingclasses]}
->
-  <!-- SVG til venstre -->
-  <img src={icon} alt="" aria-hidden="true" class="w-5 h-5 flex-shrink-0" />
-
-  <!-- Tekst til højre -->
-  <span><slot /></span>
-</button>
+{
+  href ? (
+    <a
+      href={href}
+      class:list={[
+        baseClasses,
+        variantClasses[variant],
+        stylingclasses,
+        "relative z-50",
+      ]}
+    >
+      <img src={icon} alt="" aria-hidden="true" class="w-5 h-5 flex-shrink-0" />
+      <span>
+        <slot />
+      </span>
+    </a>
+  ) : (
+    <button
+      type={type}
+      class:list={[baseClasses, variantClasses[variant], stylingclasses]}
+    >
+      <img src={icon} alt="" aria-hidden="true" class="w-5 h-5 flex-shrink-0" />
+      <span>
+        <slot />
+      </span>
+    </button>
+  )
+}
