@@ -8,6 +8,7 @@ import Text from "../components/Text.astro";
 import Button from "../components/Button.astro";
 import Card from "../components/UniverseCard.astro";
 import HeroCard from "../components/HeroCard.astro";
+import HeroCarousel from "../components/HeroCarousel.astro";
 import FilmCardTimeline from "../components/FilmCardTimeline.astro";
 import TopTenCard from "../components/TopTenCard.astro";
 import FilmCard from "../components/FilmCard.astro";
@@ -17,8 +18,7 @@ import HorizontalScroll from "../components/HorizontalScroll.astro";
 
 <MainLayout title="Titel">
   <main class="">
-    <section>
-      <!--Hero cards start-->
+    <HeroCarousel>
       <HeroCard
         backgroundImage="/img/hero_img1.jpg"
         backgroundAlt="Lillefinger ligger i en græsslette"
@@ -28,6 +28,7 @@ import HorizontalScroll from "../components/HorizontalScroll.astro";
         description="Nogle gange er det godt at have en hule sammen med sin bedste ven, hvor man kan bo, helt uden nogen voksne."
         playLabel="Se mere"
         playIcon="/svg/play.svg"
+        stylingclasses="shrink-0 w-[82vw] md:w-[70vw] lg:w-[60vw]"
       />
 
       <HeroCard
@@ -39,6 +40,7 @@ import HorizontalScroll from "../components/HorizontalScroll.astro";
         description="To geder på vandring snubler ind i nye udfordringer og opdager, at selv den mindste kan være den største helt."
         playLabel="Se mere"
         playIcon="/svg/play.svg"
+        stylingclasses="shrink-0 w-[82vw] md:w-[70vw] lg:w-[60vw]"
       />
 
       <HeroCard
@@ -50,6 +52,7 @@ import HorizontalScroll from "../components/HorizontalScroll.astro";
         description="To geder på vandring snubler ind i nye udfordringer og opdager, at selv den mindste kan være den største helt."
         playLabel="Se mere"
         playIcon="/svg/play.svg"
+        stylingclasses="shrink-0 w-[82vw] md:w-[70vw] lg:w-[60vw]"
       />
 
       <HeroCard
@@ -61,10 +64,9 @@ import HorizontalScroll from "../components/HorizontalScroll.astro";
         description="Myre er ked af det, fordi hans bedste ven skal flytte ud."
         playLabel="Se mere"
         playIcon="/svg/play.svg"
+        stylingclasses="shrink-0 w-[82vw] md:w-[70vw] lg:w-[60vw]"
       />
-
-      <!--Hero slut-->
-    </section>
+    </HeroCarousel>
     <section class="pl-4 py-10 lg:pl-12 lg:py-20">
       <!--Se videre start-->
       <Heading htmlheading="h4" size="h4">Se videre</Heading>
